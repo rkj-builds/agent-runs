@@ -13,6 +13,12 @@ export function App({ store: given, initialRun }: { store?: RunsStore; initialRu
   const { runs, speed } = useRuns(store);
   const [selected, setSelected] = useState(initialRun ?? runs[0]?.script.id ?? "");
   const [compact, setCompact] = useState(false);
+  const main = useRef<HTMLElement>(null);
+  // On a phone the list sits above the run, so choosing one takes you to it.
+  const select = (id: string) => {
+    setSelected(id);
+    if (matchMedia("(max-width: 760px)").matches) main.current?.scrollIntoView();
+  };
   const run = runs.find((r) => r.script.id === selected) ?? runs[0];
   const waiting = runs.filter((r) => r.state.status === "waiting").length;
 
@@ -32,7 +38,7 @@ export function App({ store: given, initialRun }: { store?: RunsStore; initialRu
       <header className="bar">
         <p className="brand">Agent runs</p>
         {waiting > 0 ? (
-          <button type="button" className="pill" onClick={() => setSelected(runs.find((r) => r.state.status === "waiting")?.script.id ?? selected)}>
+          <button type="button" className="pill" onClick={() => select(runs.find((r) => r.state.status === "waiting")?.script.id ?? selected)}>
             {waiting} waiting on you
           </button>
         ) : (
@@ -58,13 +64,13 @@ export function App({ store: given, initialRun }: { store?: RunsStore; initialRu
       </header>
       <div className="layout">
         <aside className="side">
-          <RunList runs={runs} selected={run?.script.id ?? ""} onSelect={setSelected} />
+          <RunList runs={runs} selected={run?.script.id ?? ""} onSelect={select} />
           <p className="note sm dim">
             A working prototype. The runs are scripted, so they play the same way every time, and no model is called. The jobs
             are modelled on real ones at Project 831; the people and amounts are invented. <a href="../case/run-view.html">About this</a>
           </p>
         </aside>
-        <main className="main">{run && <RunDetail key={run.script.id} run={run} onDecide={(d) => store.decide(run.script.id, d)} />}</main>
+        <main className="main" ref={main}>{run && <RunDetail key={run.script.id} run={run} onDecide={(d) => store.decide(run.script.id, d)} />}</main>
       </div>
       <p className="sr-only" role="status" aria-live="polite">
         {said}

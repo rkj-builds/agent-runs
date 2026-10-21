@@ -68,6 +68,7 @@
 }
 .main {
   min-width: 0;
+  scroll-margin-top: 52px;
   padding: var(--s-5) var(--s-6) var(--s-6);
 }
 
@@ -196,6 +197,9 @@
   50% {
     opacity: 0;
   }
+}
+[id^="step-"] {
+  scroll-margin: 72px 0 24px;
 }
 [data-current] {
   outline: 1px solid var(--focus);
@@ -469,6 +473,7 @@ th {
   }
   .main {
     padding: var(--s-4);
+    scroll-margin-top: 92px;
   }
   .bar {
     flex-wrap: wrap;
