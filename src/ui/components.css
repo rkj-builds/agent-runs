@@ -1,0 +1,125 @@
+/* Button: one shape, three weights. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  height: var(--row);
+  padding: 0 var(--s-3);
+  border: 0;
+  border-radius: var(--r-2);
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--line-2);
+  font-weight: var(--w-title);
+  cursor: pointer;
+  transition: background var(--d-1) var(--ease);
+}
+.btn:hover {
+  background: var(--surface-2);
+}
+.btn[data-variant="primary"] {
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: none;
+}
+.btn[data-variant="primary"]:hover {
+  opacity: 0.9;
+}
+.btn[data-variant="ghost"] {
+  box-shadow: none;
+  color: var(--muted);
+}
+.btn[aria-pressed="true"] {
+  background: var(--surface-2);
+  color: var(--fg);
+}
+.btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* Segmented: a row of pressed/unpressed buttons. */
+.seg {
+  display: inline-flex;
+  padding: 2px;
+  border-radius: var(--r-2);
+  box-shadow: inset 0 0 0 1px var(--line-2);
+}
+.seg .btn {
+  height: calc(var(--row) - 4px);
+  box-shadow: none;
+  padding: 0 var(--s-2);
+  color: var(--muted);
+  font-weight: var(--w-body);
+}
+.seg .btn[aria-pressed="true"] {
+  color: var(--fg);
+  font-weight: var(--w-title);
+}
+
+/* Status: an icon and a word, coloured together. */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.status svg {
+  flex: none;
+}
+.status[data-s="running"] {
+  color: var(--fg);
+}
+.status[data-s="waiting"] {
+  color: var(--wait);
+}
+.status[data-s="done"] {
+  color: var(--ok);
+}
+.status[data-s="failed"] {
+  color: var(--err);
+}
+.status[data-s="held"] {
+  color: var(--muted);
+}
+.status[data-s="retrying"] {
+  color: var(--warn);
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}
+.spin {
+  animation: spin 0.9s linear infinite;
+  transform-origin: center;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Meter: a thin bar for a long step. */
+.meter {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--line-2);
+  overflow: hidden;
+}
+.meter > span {
+  display: block;
+  height: 100%;
+  background: var(--fg);
+  transition: width var(--d-2) var(--ease);
+}
+
+.kbd {
+  display: inline-block;
+  min-width: 18px;
+  padding: 0 4px;
+  border-radius: var(--r-1);
+  box-shadow: inset 0 0 0 1px var(--line-2);
+  font: var(--w-title) 11px / 16px var(--mono);
+  text-align: center;
+  color: var(--muted);
+}

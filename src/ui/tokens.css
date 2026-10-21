@@ -1,0 +1,114 @@
+/*
+ * The design system, as tokens. Every colour, size, space and motion value in the app comes from here.
+ *
+ * Type: two sizes. --text for everything you read, --text-sm for meta; --text-lg is for the run's title only.
+ * Mono for anything a machine wrote.
+ * Weight carries hierarchy: --w-body, --w-title, --w-strong. Colour carries rank: --fg, --muted, --dim.
+ * Status: --ok, --wait, --warn, --err. Never used alone: every status ships with its icon and its word.
+ * Motion: only where state changed. Under reduced motion, nothing moves.
+ */
+:root {
+  color-scheme: dark;
+  --font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, "SF Mono", "Geist Mono", Menlo, Consolas, monospace;
+
+  --text: 14px;
+  --leading: 20px;
+  --text-sm: 12.5px;
+  --leading-sm: 18px;
+  --text-lg: 18px;
+  --leading-lg: 26px;
+  --w-body: 400;
+  --w-title: 500;
+  --w-strong: 600;
+
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --row: 32px;
+
+  --r-1: 4px;
+  --r-2: 6px;
+  --r-3: 10px;
+
+  --bg: #0b0b0b;
+  --surface: #121212;
+  --surface-2: #181818;
+  --line: #ffffff14;
+  --line-2: #ffffff24;
+  --fg: #ededed;
+  --muted: #a8a8a8;
+  --dim: #808080;
+  --accent: #ededed;
+  --on-accent: #0b0b0b;
+  --focus: #58a6ff;
+
+  --ok: #3fb950;
+  --wait: #58a6ff;
+  --warn: #d6a23a;
+  --err: #f47067;
+  --warn-bg: #d6a23a14;
+  --err-bg: #f4706712;
+  --wait-bg: #58a6ff12;
+
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --d-1: 120ms;
+  --d-2: 220ms;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg: #fcfcfc;
+    --surface: #ffffff;
+    --surface-2: #f5f5f5;
+    --line: #0000000f;
+    --line-2: #0000001f;
+    --fg: #171717;
+    --muted: #525252;
+    --dim: #6b6b6b;
+    --accent: #171717;
+    --on-accent: #ffffff;
+    --focus: #0969da;
+    --ok: #1a7f37;
+    --wait: #0969da;
+    --warn: #9a6700;
+    --err: #cf222e;
+    --warn-bg: #9a670010;
+    --err-bg: #cf222e0d;
+    --wait-bg: #0969da0d;
+  }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #fcfcfc;
+  --surface: #ffffff;
+  --surface-2: #f5f5f5;
+  --line: #0000000f;
+  --line-2: #0000001f;
+  --fg: #171717;
+  --muted: #525252;
+  --dim: #6b6b6b;
+  --accent: #171717;
+  --on-accent: #ffffff;
+  --focus: #0969da;
+  --ok: #1a7f37;
+  --wait: #0969da;
+  --warn: #9a6700;
+  --err: #cf222e;
+  --warn-bg: #9a670010;
+  --err-bg: #cf222e0d;
+  --wait-bg: #0969da0d;
+}
+
+/* Compact: the same layout with less air, for people who live in it all day. */
+[data-density="compact"] {
+  --s-3: 8px;
+  --s-4: 12px;
+  --s-5: 16px;
+  --row: 26px;
+}
